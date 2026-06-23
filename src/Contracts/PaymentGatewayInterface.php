@@ -1,5 +1,5 @@
 <?php
-namespace Hammam\PaymentGateways\contracts;
+namespace Hammam\PaymentGateways\Contracts;
 
 use Hammam\PaymentGateways\DTOs\PaymentData;
 use Hammam\PaymentGateways\DTOs\PaymentResponse;
