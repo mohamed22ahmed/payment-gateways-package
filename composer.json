@@ -1,0 +1,28 @@
+{
+    "name": "hammam/payment-gateways",
+    "description": "this package for integrating many payment gateways and be ready to just install the package and config (to hide some of the packages) to suite your demands",
+    "type": "library",
+    "require": {
+        "php": "^8.5"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.7",
+        "orchestra/testbench": "^11.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hammam\\PaymentGateways\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mohamed22ahmed",
+            "email": "mohammedahmedhammam113@gmail.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
