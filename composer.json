@@ -14,6 +14,18 @@
             "Hammam\\PaymentGateways\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hammam\\PaymentGateways\\Providers\\PaymentGatewayServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "mohamed22ahmed",
