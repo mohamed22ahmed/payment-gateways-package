@@ -9,6 +9,7 @@ use Hammam\PaymentGateways\DTOs\PaymentResponse;
 class PaymobGateway implements PaymentGatewayInterface
 {
     public function pay(PaymentData $data): PaymentResponse {
+
         return new PaymentResponse(
             success: true,
             transactionId: 'PM123',

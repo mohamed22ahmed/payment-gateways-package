@@ -19,6 +19,5 @@ class TestCase extends Orchestra
 
         $app['config']->set('paymob.api_key', 'test_key');
         $app['config']->set('paymob.integration_id', '123456');
-
     }
 }
