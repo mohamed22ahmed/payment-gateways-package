@@ -10,7 +10,10 @@ class PaymentResponseTest extends TestCase
     public function test_creates_successful_response(){
         $response = new PaymentResponse(
             success: true,
-            transactionId: '123'
+            transactionId: '123',
+            merchant_order_id: null,
+            amount: 20.00,
+            message: 'Payment completed successfully.'
         );
 
         expect($response->success)->toBeTrue();
@@ -19,7 +22,10 @@ class PaymentResponseTest extends TestCase
     public function test_creates_failed_response(){
         $response = new PaymentResponse(
             success: false,
-            transactionId: '123'
+            transactionId: '123',
+            merchant_order_id: null,
+            amount: 00.00,
+            message: 'Payment Failed.'
         );
 
         expect($response->success)->toBeFalse();
@@ -28,19 +34,12 @@ class PaymentResponseTest extends TestCase
     public function test_creates_response_with_transaction_id(){
         $response = new PaymentResponse(
             success: true,
-            transactionId: '123'
+            transactionId: '123',
+            merchant_order_id: null,
+            amount: 20.00,
+            message: 'Payment completed successfully.'
         );
 
         expect($response->transactionId)->toBe('123');
-    }
-
-    public function test_redirect_url_exists()
-    {
-        $response = new PaymentResponse(
-            success: true,
-            transactionId: '123',
-            checkoutUrl: 'https://accept.paymob.com'
-        );
-        expect($response->checkoutUrl)->toBe('https://accept.paymob.com');
     }
 }

@@ -7,7 +7,8 @@ class PaymentResponse
     public function __construct(
         public readonly bool $success,
         public readonly string $transactionId,
-        public readonly ?string $checkoutUrl = null,
+        public readonly ?string $merchant_order_id = null,
+        public readonly float $amount,
         public readonly ?string $message = null
     ) {}
 }

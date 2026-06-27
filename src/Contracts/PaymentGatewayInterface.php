@@ -6,7 +6,8 @@ use Hammam\PaymentGateways\DTOs\PaymentResponse;
 
 interface PaymentGatewayInterface
 {
-    public function pay(PaymentData $data): PaymentResponse;
+    public function authenticate(): array | \Exception;
+    public function pay(PaymentData $data): string | \Exception;
     public function refund(string $transactionId, float $amount): bool;
-    public function verify($data): bool;
+    public function verify(array $callbackData): PaymentResponse;
 }

@@ -12,6 +12,7 @@ class PaymentDataTest extends TestCase
             orderId: '123',
             amount: 100,
             currency: 'EGP',
+            billingData: [],
             customerName: 'Memo',
             customerEmail: 'memo@gmail.com',
             customerPhone: '+20123654799',
