@@ -20,8 +20,4 @@ class PaymentDataTest extends TestCase
         expect($dto->amount)->toBe(100.0)
             ->and($dto->currency)->toBe('EGP');
     }
-
-    //TODO: Default values are applied correctly
-    //TODO: Array conversion works (toArray())
-    //TODO: Required fields cannot be missing
 }
