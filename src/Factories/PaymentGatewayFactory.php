@@ -4,12 +4,14 @@ namespace Hammam\PaymentGateways\Factories;
 
 use Hammam\PaymentGateways\Contracts\PaymentGatewayInterface;
 use Hammam\PaymentGateways\Gateways\PaymobGateway;
+use Hammam\PaymentGateways\Gateways\StripeGateway;
 
 class PaymentGatewayFactory
 {
     public static function make(string $gateway): PaymentGatewayInterface{
         return match($gateway){
             'paymob' => app(PaymobGateway::class),
+            'stripe' => app(StripeGateway::class),
             // Fawry
             // Kashier
             // OPay
@@ -19,7 +21,6 @@ class PaymentGatewayFactory
             // Moyasar
             // Geidea
             // MyFatoorah
-            // Stripe
             // PayPal
             // Braintree
             // Checkout.com

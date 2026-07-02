@@ -12,5 +12,12 @@ return [
             'hmac_secret' => env('PAYMOB_HMAC_SECRET', '1AE6DBD5DEA73E409979BB2A5E0DDCFA'),
             'currency' => env('PAYMOB_CURRENCY', 'EGP')
         ],
+
+        'stripe' => [
+            'enabled' => true,
+            'secret_key' => env('STRIPE_SECRET_KEY', 'sk_test_your_stripe_secret_key'),
+            'webhook_secret' => env('STRIPE_WEBHOOK_SECRET', 'whsec_your_webhook_secret'),
+            'currency' => env('STRIPE_CURRENCY', 'USD')
+        ],
     ]
 ];

@@ -11,15 +11,23 @@ class PaymobGateway implements PaymentGatewayInterface
 {
     private string $baseUrl;
     private array $config;
+    private $httpClient;
+
     public function __construct() {
         $this->config = config('payments.gateways.paymob');
         $this->baseUrl = $this->config['base_url'];
+        $this->httpClient = Http::getFacadeRoot();
+    }
+
+    public function setHttpClient($httpClient): void
+    {
+        $this->httpClient = $httpClient;
     }
 
     public function authenticate(): array|\Exception
     {
         try {
-            $response = Http::post("{$this->baseUrl}/auth/tokens", [
+            $response = $this->httpClient->post("{$this->baseUrl}/auth/tokens", [
                 'api_key' => $this->config['api_key']
             ]);
 
@@ -32,13 +40,14 @@ class PaymobGateway implements PaymentGatewayInterface
     public function pay(PaymentData $data): string|\Exception
     {
         $token = $this->authenticate()['token'];
+        $billingData = $data->billingData ?? [];
 
-        $orderResponse = Http::post("{$this->baseUrl}/ecommerce/orders", [
+        $orderResponse = $this->httpClient->post("{$this->baseUrl}/ecommerce/orders", [
             'auth_token' => $token,
             'delivery_needed' => 'false',
             'amount_cents' => $data->amount * 100,
             'currency' => $data->currency ?? $this->config['currency'],
-            'merchant_order_id' => $orderDetails['merchant_order_id'] ?? uniqid(),
+            'merchant_order_id' => $data->orderId ?? uniqid(),
         ]);
 
         if ($orderResponse->failed()) {
@@ -63,7 +72,7 @@ class PaymobGateway implements PaymentGatewayInterface
 
         $orderId = $orderResponse->json()['id'];
 
-        $paymentKeyResponse = Http::post("{$this->baseUrl}/acceptance/payment_keys", [
+        $paymentKeyResponse = $this->httpClient->post("{$this->baseUrl}/acceptance/payment_keys", [
             'auth_token' => $token,
             'amount_cents' => $data->amount * 100,
             'expiration' => 3600,
@@ -135,7 +144,7 @@ class PaymobGateway implements PaymentGatewayInterface
     {
         $token = $this->authenticate()['token'];
 
-        $response = Http::post("{$this->baseUrl}/acceptance/void_refund/refund", [
+        $response = $this->httpClient->post("{$this->baseUrl}/acceptance/void_refund/refund", [
             'auth_token' => $token,
             'transaction_id' => $transactionId,
             'amount_cents' => $amount * 100

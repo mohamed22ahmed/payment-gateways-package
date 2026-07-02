@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"Tests\\Gateways\\StripeGatewayTest::test_pay_function":0.066,"Tests\\Gateways\\PaymobGatewayTest::test_pay_function":0.063}}

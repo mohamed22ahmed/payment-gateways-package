@@ -22,7 +22,7 @@ class PaymentGatewayRegistryTest extends TestCase
             ]
         ];
         $registry->register($data);
-        expect($registry->enabled())->toBe(['paymob', 'fawry']);
+        expect($registry->enabled())->toBe(['paymob', 'stripe', 'fawry']);
     }
 
     public function test_retrieves_gateway() {
